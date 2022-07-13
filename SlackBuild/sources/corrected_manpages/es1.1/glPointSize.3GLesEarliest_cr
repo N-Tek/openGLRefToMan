@@ -1,0 +1,114 @@
+'\" t
+.\"     Title: glPointSize
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL ES 1.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLPOINTSIZE" "3GLesEarliest" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL ES 1\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glPointSize, glPointSizex \- specify the diameter of rasterized points
+.SH "C SPECIFICATION"
+.HP \w'void\ glPointSize('u
+.BI "void glPointSize(GLfloat\ " "size" ");"
+.HP \w'void\ glPointSizex('u
+.BI "void glPointSizex(GLfixed\ " "size" ");"
+.SH "PARAMETERS"
+.PP
+\fIsize\fR
+.RS 4
+Specifies the diameter of rasterized points\&. The initial value is 1\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglPointSize\fR
+specifies the rasterized diameter of both aliased and antialiased points\&. Using a point size other than 1 has different effects, depending on whether point antialiasing is enabled\&. To enable and disable point antialiasing, call
+\fBglEnable\fR()
+and
+\fBglDisable\fR()
+with argument
+\fBGL_POINT_SMOOTH\fR\&. Point antialiasing is initially disabled\&.
+.PP
+If point antialiasing is disabled, the actual size is determined by rounding the supplied size to the nearest integer\&. (If the rounding results in the value 0, it is as if the point size were 1\&.) If the rounded size is odd, then the center point
+xy
+of the pixel fragment that represents the point is computed as
+            
+                              1             1
+               (    [ xw ] + ---, [ yw ] + ---   )
+                              2             2
+
+        .PP
+where
+\fIw\fR
+subscripts indicate window coordinates\&. All pixels that lie within the square grid of the rounded size centered at
+xy
+make up the fragment\&. If the size is even, the center point is
+
+            
+                    [        1  ]  [       1  ]
+               (    [ xw  + --- ], [ yw + --- ] )
+                    [        2  ]  [       2  ]
+                
+        .PP
+and the rasterized fragment\*(Aqs centers are the half\-integer window coordinates within the square of the rounded size centered at
+xy\&. All pixel fragments produced in rasterizing a nonantialiased point are assigned the same associated data, that of the vertex corresponding to the point\&.
+.PP
+If antialiasing is enabled, then point rasterization produces a fragment for each pixel square that intersects the region lying within the circle having diameter equal to the current point size and centered at the point\*(Aqs
+xw yw\&. The coverage value for each fragment is the window coordinate area of the intersection of the circular region with the corresponding pixel square\&. This value is saved and used in the final rasterization step\&. The data associated with each fragment is the data associated with the point being rasterized\&.
+.PP
+Not all sizes are supported when point antialiasing is enabled\&. If an unsupported size is requested, the nearest supported size is used\&. Only size 1 is guaranteed to be supported; others depend on the implementation\&. To query the range of supported sizes, call
+\fBglGet\fR()
+with the argument
+\fBGL_SMOOTH_POINT_SIZE_RANGE\fR\&. For aliased points, query the supported ranges
+\fBglGet\fR()
+with the argument
+\fBGL_ALIASED_POINT_SIZE_RANGE\fR\&.
+.SH "NOTES"
+.PP
+A non\-antialiased point size may be clamped to an implementation\-dependent maximum\&. Although this maximum cannot be queried, it must be no less than the maximum value for antialiased points, rounded to the nearest integer value\&.
+.SH "ERRORS"
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if
+\fIsize\fR
+is less than or equal to 0\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_ALIASED_POINT_SIZE_RANGE\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_SMOOTH_POINT_SIZE_RANGE\fR
+.SH "SEE ALSO"
+.PP
+\fBglEnable\fR(),
+\fBglGet\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+2003\-2004 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.

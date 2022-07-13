@@ -1,0 +1,3 @@
+[submodule "SlackBuild/sources/OpenGL-Refpages"]
+	path = SlackBuild/sources/OpenGL-Refpages
+	url = git@github.com:KhronosGroup/OpenGL-Refpages.git

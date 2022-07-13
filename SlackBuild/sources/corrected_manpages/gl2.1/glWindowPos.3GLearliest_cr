@@ -1,0 +1,229 @@
+'\" t
+.\"     Title: glWindowPos
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL 2.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLWINDOWPOS" "3GLearliest" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL 2\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glWindowPos \- specify the raster position in window coordinates for pixel operations
+.SH "C SPECIFICATION"
+.HP \w'void\ glWindowPos2s('u
+.BI "void glWindowPos2s(GLshort\ " "x" ", GLshort\ " "y" ");"
+.HP \w'void\ glWindowPos2i('u
+.BI "void glWindowPos2i(GLint\ " "x" ", GLint\ " "y" ");"
+.HP \w'void\ glWindowPos2f('u
+.BI "void glWindowPos2f(GLfloat\ " "x" ", GLfloat\ " "y" ");"
+.HP \w'void\ glWindowPos2d('u
+.BI "void glWindowPos2d(GLdouble\ " "x" ", GLdouble\ " "y" ");"
+.HP \w'void\ glWindowPos3s('u
+.BI "void glWindowPos3s(GLshort\ " "x" ", GLshort\ " "y" ", GLshort\ " "z" ");"
+.HP \w'void\ glWindowPos3i('u
+.BI "void glWindowPos3i(GLint\ " "x" ", GLint\ " "y" ", GLint\ " "z" ");"
+.HP \w'void\ glWindowPos3f('u
+.BI "void glWindowPos3f(GLfloat\ " "x" ", GLfloat\ " "y" ", GLfloat\ " "z" ");"
+.HP \w'void\ glWindowPos3d('u
+.BI "void glWindowPos3d(GLdouble\ " "x" ", GLdouble\ " "y" ", GLdouble\ " "z" ");"
+.SH "PARAMETERS"
+.PP
+\fIx\fR, \fIy\fR, \fIz\fR
+.RS 4
+Specify the
+x,
+y,
+z
+coordinates for the raster position\&.
+.RE
+.SH "C SPECIFICATION"
+.HP \w'void\ glWindowPos2sv('u
+.BI "void glWindowPos2sv(const\ GLshort\ *\ " "v" ");"
+.HP \w'void\ glWindowPos2iv('u
+.BI "void glWindowPos2iv(const\ GLint\ *\ " "v" ");"
+.HP \w'void\ glWindowPos2fv('u
+.BI "void glWindowPos2fv(const\ GLfloat\ *\ " "v" ");"
+.HP \w'void\ glWindowPos2dv('u
+.BI "void glWindowPos2dv(const\ GLdouble\ *\ " "v" ");"
+.HP \w'void\ glWindowPos3sv('u
+.BI "void glWindowPos3sv(const\ GLshort\ *\ " "v" ");"
+.HP \w'void\ glWindowPos3iv('u
+.BI "void glWindowPos3iv(const\ GLint\ *\ " "v" ");"
+.HP \w'void\ glWindowPos3fv('u
+.BI "void glWindowPos3fv(const\ GLfloat\ *\ " "v" ");"
+.HP \w'void\ glWindowPos3dv('u
+.BI "void glWindowPos3dv(const\ GLdouble\ *\ " "v" ");"
+.SH "PARAMETERS"
+.PP
+\fIv\fR
+.RS 4
+Specifies a pointer to an array of two or three elements, specifying
+x,
+y,
+z
+coordinates, respectively\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+The GL maintains a 3D position in window coordinates\&. This position, called the raster position, is used to position pixel and bitmap write operations\&. It is maintained with subpixel accuracy\&. See
+\fBglBitmap\fR(),
+\fBglDrawPixels\fR(), and
+\fBglCopyPixels\fR()\&.
+.PP
+\fBglWindowPos2\fR
+specifies the
+x
+and
+y
+coordinates, while
+z
+is implicitly set to 0\&.
+\fBglWindowPos3\fR
+specifies all three coordinates\&. The
+w
+coordinate of the current raster position is always set to 1\&.0\&.
+.PP
+\fBglWindowPos\fR
+directly updates the
+x
+and
+y
+coordinates of the current raster position with the values specified\&. That is, the values are neither transformed by the current modelview and projection matrices, nor by the viewport\-to\-window transform\&. The
+z
+coordinate of the current raster position is updated in the following manner:
+.PP
+        { n                        if z <= 0
+.br
+    z = { f                        if z >= 1
+.br
+        { n + z \(mu (f \- n)      otherwise
+.PP
+where
+n
+is
+\fBGL_DEPTH_RANGE\fR\*(Aqs near value, and
+f
+is
+\fBGL_DEPTH_RANGE\fR\*(Aqs far value\&. See
+\fBglDepthRange\fR()\&.
+.PP
+The specified coordinates are not clip\-tested, causing the raster position to always be valid\&.
+.PP
+The current raster position also includes some associated color data and texture coordinates\&. If lighting is enabled, then
+\fBGL_CURRENT_RASTER_COLOR\fR
+(in RGBA mode) or
+\fBGL_CURRENT_RASTER_INDEX\fR
+(in color index mode) is set to the color produced by the lighting calculation (see
+\fBglLight\fR(),
+\fBglLightModel\fR(), and
+\fBglShadeModel\fR())\&. If lighting is disabled, current color (in RGBA mode, state variable
+\fBGL_CURRENT_COLOR\fR) or color index (in color index mode, state variable
+\fBGL_CURRENT_INDEX\fR) is used to update the current raster color\&.
+\fBGL_CURRENT_RASTER_SECONDARY_COLOR\fR
+(in RGBA mode) is likewise updated\&.
+.PP
+Likewise,
+\fBGL_CURRENT_RASTER_TEXTURE_COORDS\fR
+is updated as a function of
+\fBGL_CURRENT_TEXTURE_COORDS\fR, based on the texture matrix and the texture generation functions (see
+\fBglTexGen\fR())\&. The
+\fBGL_CURRENT_RASTER_DISTANCE\fR
+is set to the
+\fBGL_CURRENT_FOG_COORD\fR\&.
+.PP
+.SH "NOTES"
+.PP
+\fBglWindowPos\fR
+is available only if the GL version is 1\&.4 or greater\&.
+.PP
+The raster position is modified by
+\fBglRasterPos\fR(),
+\fBglBitmap\fR(), and
+\fBglWindowPos\fR\&.
+.PP
+Calling
+\fBglDrawElements\fR(), or
+\fBglDrawRangeElements\fR()
+may leave the current color or index indeterminate\&. If
+\fBglWindowPos\fR
+is executed while the current color or index is indeterminate, the current raster color or current raster index remains indeterminate\&.
+.PP
+There are distinct raster texture coordinates for each texture unit\&. Each texture unit\*(Aqs current raster texture coordinates are updated by
+\fBglWindowPos\fR\&.
+.SH "ERRORS"
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fBglWindowPos\fR
+is executed between the execution of
+\fBglBegin\fR()
+and the corresponding execution of
+\fBglEnd\fR()\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_POSITION\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_POSITION_VALID\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_DISTANCE\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_COLOR\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_SECONDARY_COLOR\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_INDEX\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_TEXTURE_COORDS\fR
+.SH "SEE ALSO"
+.PP
+\fBglBitmap\fR(),
+\fBglCopyPixels\fR(),
+\fBglDrawArrays\fR(),
+\fBglDrawElements\fR(),
+\fBglDrawRangeElements\fR(),
+\fBglDrawPixels\fR(),
+\fBglMultiTexCoord\fR(),
+\fBglRasterPos\fR(),
+\fBglTexCoord\fR(),
+\fBglTexGen\fR(),
+\fBglVertex\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+1991\-2006 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.

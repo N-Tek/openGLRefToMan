@@ -1,0 +1,157 @@
+es1.1
+-----
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glBlendFunc.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glFogf.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glFogfv.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glFogx.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glFogxv.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glFrustumf.3GLesEarliest.gz
+so fle          /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glFrustumx.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glIsEnabled.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glLoadIdentity.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glLoadMatrixf.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glLoadMatrixx.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glMultMatrixf.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glMultMatrixx.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glOrthof.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glOrthox.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glPointSize.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glPointSizex.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glRotatef.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glRotatex.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glScalef.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glScalex.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glShadeModel.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glGetTexEnvf.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glGetTexEnvfv.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glGetTexEnvi.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glGetTexEnviv.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glGetTexEnvx.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glGetTexEnvxv.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glTranslatef.3GLesEarliest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glTranslatex.3GLesEarliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es1.1/glViewport.3GLesEarliest.gz
+
+es2.0
+-----
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es2.0/glBlendEquation.3GLesSecond.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es2.0/glBlendEquationSeparate.3GLesSecond.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es2.0/glBlendFunc.3GLesSecond.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es2.0/glBlendFuncSeparate.3GLesSecond.gz
+
+es3.0
+-----
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glBlendEquation.3GLesSecond.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glBlendEquationSeparate.3GLesSecond.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glBlendFunc.3GLesSecond.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glBlendFuncSeparate.3GLesSecond.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glPixelStorei.3GLesSecond.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glReadPixels.3GLesThird.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glSamplerParameter.3GLesThird.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glTexImage2D.3GLesThird.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glTexImage3D.3GLesThird.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glTexParameter.3GLesThird.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glTexStorage2D.3GLesThird.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glTexStorage3D.3GLesThird.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/glViewport.3GLesThird.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.0/gl_FrontFacing.3GLesThird.gz
+
+es3.1
+-----
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glBlendEquation.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glBlendEquationSeparate.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glBlendFunc.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glBlendFuncSeparate.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glGetProgramResource.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glReadPixels.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glSamplerParameter.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glTexImage2D.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glTexImage3D.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glTexParameter.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glTexStorage2D.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glTexStorage2DMultisample.3GLesFourth.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.1/glTexStorage3D.3GLesFourth.gz
+
+es3.2
+-----
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glBeginTransformFeedback.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glBlendEquation.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glBlendEquationSeparate.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glBlendFunc.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glBlendFuncSeparate.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glCopyImageSubData.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glGetProgramResource.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glPixelStorei.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glReadPixels.3GLesLatest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glReadnPixels.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glSamplerParameter.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glTexImage2D.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glTexImage3D.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glTexParameter.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glTexStorage2D.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glTexStorage2DMultisample.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glTexStorage3D.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/glTexStorage3DMultisample.3GLesLatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/es3.2/gl_FrontFacing.3GLesLatest.gz
+
+gl2.1
+-----
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glBitmap.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glBlendEquation.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glBlendEquationSeparate.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glBlendFunc.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glBlendFuncSeparate.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glColorTable.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glConvolutionFilter1D.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glConvolutionFilter2D.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glCopyColorTable.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glCopyPixels.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glDrawPixels.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glEvalCoord.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glEvalMesh.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glEvalPoint.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glFeedbackBuffer.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glFrustum.3GLearliest.gz
+/home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glMap1.3GLearliest.gz
+/home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glMap2.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glMultMatrix.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glMultTransposeMatrix.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glOrtho.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glPixelStore.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glPointSize.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glReadPixels.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glRotate.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glScale.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glGetSeparableFilter.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glShadeModel.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glTexGen.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glTexParameter.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glViewport.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/glWindowPos.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/gluLookAt.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/gluUnProject.3GLearliest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl2.1/gluUnProject4.3GLearliest.gz
+
+gl4
+-----
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/acosh.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glBeginTransformFeedback.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glBlendEquation.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glBlendEquationSeparate.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glBlendFunc.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glBlendFuncSeparate.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glClearTexSubImage.3GLlatest.gz
+/home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glClipControl.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glCopyImageSubData.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glGetProgramResource.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glPixelStore.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glProvokingVertex.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glReadPixels.3GLlatest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glReadnPixels.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glSamplerParameter.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glTexParameter.3GLlatest.gz
+so file         /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glTextureParameter.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glViewport.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/glViewportIndexed.3GLlatest.gz
+x               /home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/gl_FrontFacing.3GLlatest.gz
+/home/live/ProgrammingExercises/OpenGL/to_man/OpenGL-Refpages/man3/gl4/sqrt.3GLlatest.gz
