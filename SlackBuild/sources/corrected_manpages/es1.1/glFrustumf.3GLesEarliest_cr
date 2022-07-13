@@ -1,0 +1,164 @@
+'\" t
+.\"     Title: glFrustum
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL ES 1.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLFRUSTUM" "3GLesEarliest" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL ES 1\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glFrustumf, glFrustumx \- multiply the current matrix by a perspective matrix
+.SH "C SPECIFICATION"
+.HP \w'void\ glFrustumf('u
+.BI "void glFrustumf(GLfloat\ " "left" ", GLfloat\ " "right" ", GLfloat\ " "bottom" ", GLfloat\ " "top" ", GLfloat\ " "near" ", GLfloat\ " "far" ");"
+.HP \w'void\ glFrustumx('u
+.BI "void glFrustumx(GLfixed\ " "left" ", GLfixed\ " "right" ", GLfixed\ " "bottom" ", GLfixed\ " "top" ", GLfixed\ " "near" ", GLfixed\ " "far" ");"
+.SH "PARAMETERS"
+.PP
+\fIleft\fR, \fIright\fR
+.RS 4
+Specify the coordinates for the left and right vertical clipping planes\&.
+.RE
+.PP
+\fIbottom\fR, \fItop\fR
+.RS 4
+Specify the coordinates for the bottom and top horizontal clipping planes\&.
+.RE
+.PP
+\fInear\fR, \fIfar\fR
+.RS 4
+Specify the distances to the near and far depth clipping planes\&. Both distances must be positive\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglFrustum\fR
+describes a perspective matrix that produces a perspective projection\&. The current matrix (see
+\fBglMatrixMode\fR()) is multiplied by this matrix and the result replaces the current matrix, as if
+\fBglMultMatrix\fR()
+were called with the following matrix as its argument:
+.PP
+       [                                        ]
+       [    2near/                              ]
+       [ -------------         0           A  0 ]
+       [ right \- left                           ]
+       [                                        ]
+       [                     2near              ]
+       [      0          -------------     B  0 ]
+       [                 top \- bottom           ]
+       [                                        ]
+       [      0                0           C  D ]
+       [                                        ]
+       [      0                0          \-1  0 ]
+       [                                        ]
+
+
+       right + left  
+.br
+A =   --------------
+       right \- left
+
+       top + bottom 
+.br
+B =   --------------
+       top \- bottom
+
+       far + near
+.br
+C = \- ------------
+       far \- near
+
+        2far near
+.br
+D = \- ------------
+       far \- near
+
+Typically, the matrix mode is
+\fBGL_PROJECTION\fR, and (\fIleft\fR,
+\fIbottom\fR, \-\fInear\fR) and (\fIright\fR,
+\fItop\fR, \-\fInear\fR) specify the points on the near clipping plane that are mapped to the lower left and upper right corners of the window, assuming that the eye is located at (0, 0, 0)\&. \-\fIfar\fR
+specifies the location of the far clipping plane\&. Both
+\fInear\fR
+and
+\fIfar\fR
+must be positive\&.
+.PP
+Use
+\fBglPushMatrix\fR()
+and
+\fBglPopMatrix\fR()
+to save and restore the current matrix stack\&.
+.SH "NOTES"
+.PP
+Depth buffer precision is affected by the values specified for
+\fInear\fR
+and
+\fIfar\fR\&. The greater the ratio of
+\fIfar\fR
+to
+\fInear\fR
+is, the less effective the depth buffer will be at distinguishing between surfaces that are near each other\&. If
+
+	    
+		r = far/near
+	    
+	.PP
+roughly
+log2(r)
+bits of depth buffer precision are lost\&. Because
+\fIr\fR
+approaches infinity as
+\fInear\fR
+approaches 0,
+\fInear\fR
+must never be set to 0\&.
+.SH "ERRORS"
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if
+\fInear\fR
+or
+\fIfar\fR
+is not positive, or if
+\fIleft\fR
+=
+\fIright\fR, or
+\fIbottom\fR
+=
+\fItop\fR, or
+\fInear\fR
+=
+\fIfar\fR\&.
+.SH "SEE ALSO"
+.PP
+\fBglOrtho\fR(),
+\fBglMatrixMode\fR(),
+\fBglMultMatrix\fR(),
+\fBglPushMatrix\fR(),
+\fBglViewport\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+2003\-2004 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.

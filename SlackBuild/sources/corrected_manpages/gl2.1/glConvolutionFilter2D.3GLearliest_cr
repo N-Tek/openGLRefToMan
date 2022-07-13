@@ -1,0 +1,453 @@
+'\" t
+.\"     Title: glConvolutionFilter2D
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL 2.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLCONVOLUTIONFILTER2" "3GLearliest" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL 2\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glConvolutionFilter2D \- define a two\-dimensional convolution filter
+.SH "C SPECIFICATION"
+.HP \w'void\ glConvolutionFilter2D('u
+.BI "void glConvolutionFilter2D(GLenum\ " "target" ", GLenum\ " "internalformat" ", GLsizei\ " "width" ", GLsizei\ " "height" ", GLenum\ " "format" ", GLenum\ " "type" ", const\ void\ *\ " "data" ");"
+.SH "PARAMETERS"
+.PP
+\fItarget\fR
+.RS 4
+Must be
+\fBGL_CONVOLUTION_2D\fR\&.
+.RE
+.PP
+\fIinternalformat\fR
+.RS 4
+The internal format of the convolution filter kernel\&. The allowable values are
+\fBGL_ALPHA\fR,
+\fBGL_ALPHA4\fR,
+\fBGL_ALPHA8\fR,
+\fBGL_ALPHA12\fR,
+\fBGL_ALPHA16\fR,
+\fBGL_LUMINANCE\fR,
+\fBGL_LUMINANCE4\fR,
+\fBGL_LUMINANCE8\fR,
+\fBGL_LUMINANCE12\fR,
+\fBGL_LUMINANCE16\fR,
+\fBGL_LUMINANCE_ALPHA\fR,
+\fBGL_LUMINANCE4_ALPHA4\fR,
+\fBGL_LUMINANCE6_ALPHA2\fR,
+\fBGL_LUMINANCE8_ALPHA8\fR,
+\fBGL_LUMINANCE12_ALPHA4\fR,
+\fBGL_LUMINANCE12_ALPHA12\fR,
+\fBGL_LUMINANCE16_ALPHA16\fR,
+\fBGL_INTENSITY\fR,
+\fBGL_INTENSITY4\fR,
+\fBGL_INTENSITY8\fR,
+\fBGL_INTENSITY12\fR,
+\fBGL_INTENSITY16\fR,
+\fBGL_R3_G3_B2\fR,
+\fBGL_RGB\fR,
+\fBGL_RGB4\fR,
+\fBGL_RGB5\fR,
+\fBGL_RGB8\fR,
+\fBGL_RGB10\fR,
+\fBGL_RGB12\fR,
+\fBGL_RGB16\fR,
+\fBGL_RGBA\fR,
+\fBGL_RGBA2\fR,
+\fBGL_RGBA4\fR,
+\fBGL_RGB5_A1\fR,
+\fBGL_RGBA8\fR,
+\fBGL_RGB10_A2\fR,
+\fBGL_RGBA12\fR, or
+\fBGL_RGBA16\fR\&.
+.RE
+.PP
+\fIwidth\fR
+.RS 4
+The width of the pixel array referenced by
+\fIdata\fR\&.
+.RE
+.PP
+\fIheight\fR
+.RS 4
+The height of the pixel array referenced by
+\fIdata\fR\&.
+.RE
+.PP
+\fIformat\fR
+.RS 4
+The format of the pixel data in
+\fIdata\fR\&. The allowable values are
+\fBGL_RED\fR,
+\fBGL_GREEN\fR,
+\fBGL_BLUE\fR,
+\fBGL_ALPHA\fR,
+\fBGL_RGB\fR,
+\fBGL_BGR\fR,
+\fBGL_RGBA\fR,
+\fBGL_BGRA\fR,
+\fBGL_LUMINANCE\fR, and
+\fBGL_LUMINANCE_ALPHA\fR\&.
+.RE
+.PP
+\fItype\fR
+.RS 4
+The type of the pixel data in
+\fIdata\fR\&. Symbolic constants
+\fBGL_UNSIGNED_BYTE\fR,
+\fBGL_BYTE\fR,
+\fBGL_BITMAP\fR,
+\fBGL_UNSIGNED_SHORT\fR,
+\fBGL_SHORT\fR,
+\fBGL_UNSIGNED_INT\fR,
+\fBGL_INT\fR,
+\fBGL_FLOAT\fR,
+\fBGL_UNSIGNED_BYTE_3_3_2\fR,
+\fBGL_UNSIGNED_BYTE_2_3_3_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5_REV\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_5_5_1\fR,
+\fBGL_UNSIGNED_SHORT_1_5_5_5_REV\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8_REV\fR,
+\fBGL_UNSIGNED_INT_10_10_10_2\fR, and
+\fBGL_UNSIGNED_INT_2_10_10_10_REV\fR
+are accepted\&.
+.RE
+.PP
+\fIdata\fR
+.RS 4
+Pointer to a two\-dimensional array of pixel data that is processed to build the convolution filter kernel\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglConvolutionFilter2D\fR
+builds a two\-dimensional convolution filter kernel from an array of pixels\&.
+.PP
+The pixel array specified by
+\fIwidth\fR,
+\fIheight\fR,
+\fIformat\fR,
+\fItype\fR, and
+\fIdata\fR
+is extracted from memory and processed just as if
+\fBglDrawPixels\fR()
+were called, but processing stops after the final expansion to RGBA is completed\&.
+.PP
+If a non\-zero named buffer object is bound to the
+\fBGL_PIXEL_UNPACK_BUFFER\fR
+target (see
+\fBglBindBuffer\fR()) while a convolution filter is specified,
+\fIdata\fR
+is treated as a byte offset into the buffer object\*(Aqs data store\&.
+.PP
+The R, G, B, and A components of each pixel are next scaled by the four 2D
+\fBGL_CONVOLUTION_FILTER_SCALE\fR
+parameters and biased by the four 2D
+\fBGL_CONVOLUTION_FILTER_BIAS\fR
+parameters\&. (The scale and bias parameters are set by
+\fBglConvolutionParameter\fR()
+using the
+\fBGL_CONVOLUTION_2D\fR
+target and the names
+\fBGL_CONVOLUTION_FILTER_SCALE\fR
+and
+\fBGL_CONVOLUTION_FILTER_BIAS\fR\&. The parameters themselves are vectors of four values that are applied to red, green, blue, and alpha, in that order\&.) The R, G, B, and A values are not clamped to [0,1] at any time during this process\&.
+.PP
+Each pixel is then converted to the internal format specified by
+\fIinternalformat\fR\&. This conversion simply maps the component values of the pixel (R, G, B, and A) to the values included in the internal format (red, green, blue, alpha, luminance, and intensity)\&. The mapping is as follows:
+.PP
+.TS
+allbox tab(:);
+lB cB cB cB cB cB cB.
+T{
+\fB Internal Format \fR
+T}:T{
+\fB Red \fR
+T}:T{
+\fB Green \fR
+T}:T{
+\fB Blue \fR
+T}:T{
+\fB Alpha \fR
+T}:T{
+\fB Luminance \fR
+T}:T{
+\fB Intensity \fR
+T}
+.T&
+l c c c c c c
+l c c c c c c
+l c c c c c c
+l c c c c c c
+l c c c c c c
+l c c c c c c.
+T{
+\fBGL_ALPHA\fR
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+A
+T}:T{
+
+T}:T{
+
+T}
+T{
+\fBGL_LUMINANCE\fR
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+R
+T}:T{
+
+T}
+T{
+\fBGL_LUMINANCE_ALPHA\fR
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+A
+T}:T{
+R
+T}:T{
+
+T}
+T{
+\fBGL_INTENSITY\fR
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+R
+T}
+T{
+\fBGL_RGB\fR
+T}:T{
+R
+T}:T{
+G
+T}:T{
+B
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}
+T{
+\fBGL_RGBA\fR
+T}:T{
+R
+T}:T{
+G
+T}:T{
+B
+T}:T{
+A
+T}:T{
+
+T}:T{
+
+T}
+.TE
+.sp 1
+.PP
+The red, green, blue, alpha, luminance, and/or intensity components of the resulting pixels are stored in floating\-point rather than integer format\&. They form a two\-dimensional filter kernel image indexed with coordinates
+\fIi\fR
+and
+\fIj\fR
+such that
+\fIi\fR
+starts at zero and increases from left to right, and
+\fIj\fR
+starts at zero and increases from bottom to top\&. Kernel location
+\fIi,j\fR
+is derived from the
+\fIN\fRth pixel, where
+\fIN\fR
+is
+\fIi\fR+\fIj\fR*\fIwidth\fR\&.
+.PP
+Note that after a convolution is performed, the resulting color components are also scaled by their corresponding
+\fBGL_POST_CONVOLUTION_c_SCALE\fR
+parameters and biased by their corresponding
+\fBGL_POST_CONVOLUTION_c_BIAS\fR
+parameters (where
+\fIc\fR
+takes on the values
+\fBRED\fR,
+\fBGREEN\fR,
+\fBBLUE\fR, and
+\fBALPHA\fR)\&. These parameters are set by
+\fBglPixelTransfer\fR()\&.
+.SH "NOTES"
+.PP
+\fBglConvolutionFilter2D\fR
+is present only if
+ARB_imaging
+is returned when
+\fBglGetString\fR()
+is called with an argument of
+\fBGL_EXTENSIONS\fR\&.
+.SH "ERRORS"
+.PP
+\fBGL_INVALID_ENUM\fR
+is generated if
+\fItarget\fR
+is not
+\fBGL_CONVOLUTION_2D\fR\&.
+.PP
+\fBGL_INVALID_ENUM\fR
+is generated if
+\fIinternalformat\fR
+is not one of the allowable values\&.
+.PP
+\fBGL_INVALID_ENUM\fR
+is generated if
+\fIformat\fR
+is not one of the allowable values\&.
+.PP
+\fBGL_INVALID_ENUM\fR
+is generated if
+\fItype\fR
+is not one of the allowable values\&.
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if
+\fIwidth\fR
+is less than zero or greater than the maximum supported value\&. This value may be queried with
+\fBglGetConvolutionParameter\fR()
+using target
+\fBGL_CONVOLUTION_2D\fR
+and name
+\fBGL_MAX_CONVOLUTION_WIDTH\fR\&.
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if
+\fIheight\fR
+is less than zero or greater than the maximum supported value\&. This value may be queried with
+\fBglGetConvolutionParameter\fR()
+using target
+\fBGL_CONVOLUTION_2D\fR
+and name
+\fBGL_MAX_CONVOLUTION_HEIGHT\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fItype\fR
+is one of
+\fBGL_UNSIGNED_BYTE_3_3_2\fR,
+\fBGL_UNSIGNED_BYTE_2_3_3_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5\fR, or
+\fBGL_UNSIGNED_SHORT_5_6_5_REV\fR
+and
+\fIformat\fR
+is not
+\fBGL_RGB\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fItype\fR
+is one of
+\fBGL_UNSIGNED_SHORT_4_4_4_4\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_5_5_1\fR,
+\fBGL_UNSIGNED_SHORT_1_5_5_5_REV\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8_REV\fR,
+\fBGL_UNSIGNED_INT_10_10_10_2\fR, or
+\fBGL_UNSIGNED_INT_2_10_10_10_REV\fR
+and
+\fIformat\fR
+is neither
+\fBGL_RGBA\fR
+nor
+\fBGL_BGRA\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if a non\-zero buffer object name is bound to the
+\fBGL_PIXEL_UNPACK_BUFFER\fR
+target and the buffer object\*(Aqs data store is currently mapped\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if a non\-zero buffer object name is bound to the
+\fBGL_PIXEL_UNPACK_BUFFER\fR
+target and the data would be unpacked from the buffer object such that the memory reads required would exceed the data store size\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if a non\-zero buffer object name is bound to the
+\fBGL_PIXEL_UNPACK_BUFFER\fR
+target and
+\fIdata\fR
+is not evenly divisible into the number of bytes needed to store in memory a datum indicated by
+\fItype\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fBglConvolutionFilter2D\fR
+is executed between the execution of
+\fBglBegin\fR()
+and the corresponding execution of
+\fBglEnd\fR()\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGetConvolutionParameter\fR(),
+\fBglGetConvolutionFilter\fR()
+.SH "SEE ALSO"
+.PP
+\fBglConvolutionFilter1D\fR(),
+\fBglSeparableFilter2D\fR(),
+\fBglConvolutionParameter\fR(),
+\fBglPixelTransfer\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+1991\-2006 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.

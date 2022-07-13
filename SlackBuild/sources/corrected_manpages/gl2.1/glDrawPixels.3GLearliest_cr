@@ -1,0 +1,696 @@
+'\" t
+.\"     Title: glDrawPixels
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/22/2021
+.\"    Manual: { OpenGL 2.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLDRAWPIXELS" "3GLearliest" "12/22/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL 2\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glDrawPixels \- write a block of pixels to the frame buffer
+.SH "C SPECIFICATION"
+.HP \w'void\ glDrawPixels('u
+.BI "void glDrawPixels(GLsizei\ " "width" ", GLsizei\ " "height" ", GLenum\ " "format" ", GLenum\ " "type" ", const\ void\ *\ " "data" ");"
+.SH "PARAMETERS"
+.PP
+\fIwidth\fR, \fIheight\fR
+.RS 4
+Specify the dimensions of the pixel rectangle to be written into the frame buffer\&.
+.RE
+.PP
+\fIformat\fR
+.RS 4
+Specifies the format of the pixel data\&. Symbolic constants
+\fBGL_COLOR_INDEX\fR,
+\fBGL_STENCIL_INDEX\fR,
+\fBGL_DEPTH_COMPONENT\fR,
+\fBGL_RGB\fR,
+\fBGL_BGR\fR,
+\fBGL_RGBA\fR,
+\fBGL_BGRA\fR,
+\fBGL_RED\fR,
+\fBGL_GREEN\fR,
+\fBGL_BLUE\fR,
+\fBGL_ALPHA\fR,
+\fBGL_LUMINANCE\fR, and
+\fBGL_LUMINANCE_ALPHA\fR
+are accepted\&.
+.RE
+.PP
+\fItype\fR
+.RS 4
+Specifies the data type for
+\fIdata\fR\&. Symbolic constants
+\fBGL_UNSIGNED_BYTE\fR,
+\fBGL_BYTE\fR,
+\fBGL_BITMAP\fR,
+\fBGL_UNSIGNED_SHORT\fR,
+\fBGL_SHORT\fR,
+\fBGL_UNSIGNED_INT\fR,
+\fBGL_INT\fR,
+\fBGL_FLOAT\fR,
+\fBGL_UNSIGNED_BYTE_3_3_2\fR,
+\fBGL_UNSIGNED_BYTE_2_3_3_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5_REV\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_5_5_1\fR,
+\fBGL_UNSIGNED_SHORT_1_5_5_5_REV\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8_REV\fR,
+\fBGL_UNSIGNED_INT_10_10_10_2\fR, and
+\fBGL_UNSIGNED_INT_2_10_10_10_REV\fR
+are accepted\&.
+.RE
+.PP
+\fIdata\fR
+.RS 4
+Specifies a pointer to the pixel data\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglDrawPixels\fR
+reads pixel data from memory and writes it into the frame buffer relative to the current raster position, provided that the raster position is valid\&. Use
+\fBglRasterPos\fR()
+or
+\fBglWindowPos\fR()
+to set the current raster position; use
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_POSITION_VALID\fR
+to determine if the specified raster position is valid, and
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_POSITION\fR
+to query the raster position\&.
+.PP
+Several parameters define the encoding of pixel data in memory and control the processing of the pixel data before it is placed in the frame buffer\&. These parameters are set with four commands:
+\fBglPixelStore\fR(),
+\fBglPixelTransfer\fR(),
+\fBglPixelMap\fR(), and
+\fBglPixelZoom\fR()\&. This reference page describes the effects on
+\fBglDrawPixels\fR
+of many, but not all, of the parameters specified by these four commands\&.
+.PP
+Data is read from
+\fIdata\fR
+as a sequence of signed or unsigned bytes, signed or unsigned shorts, signed or unsigned integers, or single\-precision floating\-point values, depending on
+\fItype\fR\&. When
+\fItype\fR
+is one of
+\fBGL_UNSIGNED_BYTE\fR,
+\fBGL_BYTE\fR,
+\fBGL_UNSIGNED_SHORT\fR,
+\fBGL_SHORT\fR,
+\fBGL_UNSIGNED_INT\fR,
+\fBGL_INT\fR, or
+\fBGL_FLOAT\fR
+each of these bytes, shorts, integers, or floating\-point values is interpreted as one color or depth component, or one index, depending on
+\fIformat\fR\&. When
+\fItype\fR
+is one of
+\fBGL_UNSIGNED_BYTE_3_3_2\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4\fR,
+\fBGL_UNSIGNED_SHORT_5_5_5_1\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8\fR, or
+\fBGL_UNSIGNED_INT_10_10_10_2\fR, each unsigned value is interpreted as containing all the components for a single pixel, with the color components arranged according to
+\fIformat\fR\&. When
+\fItype\fR
+is one of
+\fBGL_UNSIGNED_BYTE_2_3_3_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5_REV\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4_REV\fR,
+\fBGL_UNSIGNED_SHORT_1_5_5_5_REV\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8_REV\fR, or
+\fBGL_UNSIGNED_INT_2_10_10_10_REV\fR, each unsigned value is interpreted as containing all color components, specified by
+\fIformat\fR, for a single pixel in a reversed order\&. Indices are always treated individually\&. Color components are treated as groups of one, two, three, or four values, again based on
+\fIformat\fR\&. Both individual indices and groups of components are referred to as pixels\&. If
+\fItype\fR
+is
+\fBGL_BITMAP\fR, the data must be unsigned bytes, and
+\fIformat\fR
+must be either
+\fBGL_COLOR_INDEX\fR
+or
+\fBGL_STENCIL_INDEX\fR\&. Each unsigned byte is treated as eight 1\-bit pixels, with bit ordering determined by
+\fBGL_UNPACK_LSB_FIRST\fR
+(see
+\fBglPixelStore\fR())\&.
+.PP
+width \(mu height
+pixels are read from memory, starting at location
+\fIdata\fR\&. By default, these pixels are taken from adjacent memory locations, except that after all
+\fIwidth\fR
+pixels are read, the read pointer is advanced to the next four\-byte boundary\&. The four\-byte row alignment is specified by
+\fBglPixelStore\fR()
+with argument
+\fBGL_UNPACK_ALIGNMENT\fR, and it can be set to one, two, four, or eight bytes\&. Other pixel store parameters specify different read pointer advancements, both before the first pixel is read and after all
+\fIwidth\fR
+pixels are read\&. See the
+\fBglPixelStore\fR()
+reference page for details on these options\&.
+.PP
+If a non\-zero named buffer object is bound to the
+\fBGL_PIXEL_UNPACK_BUFFER\fR
+target (see
+\fBglBindBuffer\fR()) while a block of pixels is specified,
+\fIdata\fR
+is treated as a byte offset into the buffer object\*(Aqs data store\&.
+.PP
+The
+width \(mu height
+pixels that are read from memory are each operated on in the same way, based on the values of several parameters specified by
+\fBglPixelTransfer\fR()
+and
+\fBglPixelMap\fR()\&. The details of these operations, as well as the target buffer into which the pixels are drawn, are specific to the format of the pixels, as specified by
+\fIformat\fR\&.
+\fIformat\fR
+can assume one of 13 symbolic values:
+.PP
+\fBGL_COLOR_INDEX\fR
+.RS 4
+Each pixel is a single value, a color index\&. It is converted to fixed\-point format, with an unspecified number of bits to the right of the binary point, regardless of the memory data type\&. Floating\-point values convert to true fixed\-point values\&. Signed and unsigned integer data is converted with all fraction bits set to 0\&. Bitmap data convert to either 0 or 1\&.
+.sp
+Each fixed\-point index is then shifted left by
+\fBGL_INDEX_SHIFT\fR
+bits and added to
+\fBGL_INDEX_OFFSET\fR\&. If
+\fBGL_INDEX_SHIFT\fR
+is negative, the shift is to the right\&. In either case, zero bits fill otherwise unspecified bit locations in the result\&.
+.sp
+If the GL is in RGBA mode, the resulting index is converted to an RGBA pixel with the help of the
+\fBGL_PIXEL_MAP_I_TO_R\fR,
+\fBGL_PIXEL_MAP_I_TO_G\fR,
+\fBGL_PIXEL_MAP_I_TO_B\fR, and
+\fBGL_PIXEL_MAP_I_TO_A\fR
+tables\&. If the GL is in color index mode, and if
+\fBGL_MAP_COLOR\fR
+is true, the index is replaced with the value that it references in lookup table
+\fBGL_PIXEL_MAP_I_TO_I\fR\&. Whether the lookup replacement of the index is done or not, the integer part of the index is then ANDed with
+2^b \- 1, where
+b
+is the number of bits in a color index buffer\&.
+.sp
+The GL then converts the resulting indices or RGBA colors to fragments by attaching the current raster position
+\fIz\fR
+coordinate and texture coordinates to each pixel, then assigning
+x
+and
+y
+window coordinates to the
+nth fragment such that
+.sp
+    xn = xr + n % width
+.sp
+    yn = yr + floor(n/width)
+.sp
+where
+(xr, yr)
+is the current raster position\&. These pixel fragments are then treated just like the fragments generated by rasterizing points, lines, or polygons\&. Texture mapping, fog, and all the fragment operations are applied before the fragments are written to the frame buffer\&.
+.RE
+.PP
+\fBGL_STENCIL_INDEX\fR
+.RS 4
+Each pixel is a single value, a stencil index\&. It is converted to fixed\-point format, with an unspecified number of bits to the right of the binary point, regardless of the memory data type\&. Floating\-point values convert to true fixed\-point values\&. Signed and unsigned integer data is converted with all fraction bits set to 0\&. Bitmap data convert to either 0 or 1\&.
+.sp
+Each fixed\-point index is then shifted left by
+\fBGL_INDEX_SHIFT\fR
+bits, and added to
+\fBGL_INDEX_OFFSET\fR\&. If
+\fBGL_INDEX_SHIFT\fR
+is negative, the shift is to the right\&. In either case, zero bits fill otherwise unspecified bit locations in the result\&. If
+\fBGL_MAP_STENCIL\fR
+is true, the index is replaced with the value that it references in lookup table
+\fBGL_PIXEL_MAP_S_TO_S\fR\&. Whether the lookup replacement of the index is done or not, the integer part of the index is then ANDed with
+2^b \- 1, where
+b
+is the number of bits in the stencil buffer\&. The resulting stencil indices are then written to the stencil buffer such that the
+nth index is written to location
+.sp
+    xn = xr + n % width
+.sp
+    yn = yr + (n/width)
+.sp
+where
+(xr, yr)
+is the current raster position\&. Only the pixel ownership test, the scissor test, and the stencil writemask affect these write operations\&.
+.RE
+.PP
+\fBGL_DEPTH_COMPONENT\fR
+.RS 4
+Each pixel is a single\-depth component\&. Floating\-point data is converted directly to an internal floating\-point format with unspecified precision\&. Signed integer data is mapped linearly to the internal floating\-point format such that the most positive representable integer value maps to 1\&.0, and the most negative representable value maps to
+\-1\&.0\&. Unsigned integer data is mapped similarly: the largest integer value maps to 1\&.0, and 0 maps to 0\&.0\&. The resulting floating\-point depth value is then multiplied by
+\fBGL_DEPTH_SCALE\fR
+and added to
+\fBGL_DEPTH_BIAS\fR\&. The result is clamped to the range
+[0, 1]\&.
+.sp
+The GL then converts the resulting depth components to fragments by attaching the current raster position color or color index and texture coordinates to each pixel, then assigning
+x
+and
+y
+window coordinates to the
+nth fragment such that
+.sp
+    xn = xr + n % width
+.sp
+    yn = yr + floor(n/width)
+.sp
+where
+(xr, yr)
+is the current raster position\&. These pixel fragments are then treated just like the fragments generated by rasterizing points, lines, or polygons\&. Texture mapping, fog, and all the fragment operations are applied before the fragments are written to the frame buffer\&.
+.RE
+.PP
+\fBGL_RGBA\fR
+.RS 4
+.RE
+.PP
+\fBGL_BGRA\fR
+.RS 4
+Each pixel is a four\-component group: For
+\fBGL_RGBA\fR, the red component is first, followed by green, followed by blue, followed by alpha; for
+\fBGL_BGRA\fR
+the order is blue, green, red and then alpha\&. Floating\-point values are converted directly to an internal floating\-point format with unspecified precision\&. Signed integer values are mapped linearly to the internal floating\-point format such that the most positive representable integer value maps to 1\&.0, and the most negative representable value maps to
+\-1\&.0\&. (Note that this mapping does not convert 0 precisely to 0\&.0\&.) Unsigned integer data is mapped similarly: The largest integer value maps to 1\&.0, and 0 maps to 0\&.0\&. The resulting floating\-point color values are then multiplied by
+\fBGL_c_SCALE\fR
+and added to
+\fBGL_c_BIAS\fR, where
+\fIc\fR
+is RED, GREEN, BLUE, and ALPHA for the respective color components\&. The results are clamped to the range
+[0, 1]\&.
+.sp
+If
+\fBGL_MAP_COLOR\fR
+is true, each color component is scaled by the size of lookup table
+\fBGL_PIXEL_MAP_c_TO_c\fR, then replaced by the value that it references in that table\&.
+\fIc\fR
+is R, G, B, or A respectively\&.
+.sp
+The GL then converts the resulting RGBA colors to fragments by attaching the current raster position
+\fIz\fR
+coordinate and texture coordinates to each pixel, then assigning
+x
+and
+y
+window coordinates to the
+nth fragment such that
+.sp
+    xn = xr + n % width
+.sp
+    yn = yr + floor(n/width)
+.sp
+where
+(xr, yr)
+is the current raster position\&. These pixel fragments are then treated just like the fragments generated by rasterizing points, lines, or polygons\&. Texture mapping, fog, and all the fragment operations are applied before the fragments are written to the frame buffer\&.
+.RE
+.PP
+\fBGL_RED\fR
+.RS 4
+Each pixel is a single red component\&. This component is converted to the internal floating\-point format in the same way the red component of an RGBA pixel is\&. It is then converted to an RGBA pixel with green and blue set to 0, and alpha set to 1\&. After this conversion, the pixel is treated as if it had been read as an RGBA pixel\&.
+.RE
+.PP
+\fBGL_GREEN\fR
+.RS 4
+Each pixel is a single green component\&. This component is converted to the internal floating\-point format in the same way the green component of an RGBA pixel is\&. It is then converted to an RGBA pixel with red and blue set to 0, and alpha set to 1\&. After this conversion, the pixel is treated as if it had been read as an RGBA pixel\&.
+.RE
+.PP
+\fBGL_BLUE\fR
+.RS 4
+Each pixel is a single blue component\&. This component is converted to the internal floating\-point format in the same way the blue component of an RGBA pixel is\&. It is then converted to an RGBA pixel with red and green set to 0, and alpha set to 1\&. After this conversion, the pixel is treated as if it had been read as an RGBA pixel\&.
+.RE
+.PP
+\fBGL_ALPHA\fR
+.RS 4
+Each pixel is a single alpha component\&. This component is converted to the internal floating\-point format in the same way the alpha component of an RGBA pixel is\&. It is then converted to an RGBA pixel with red, green, and blue set to 0\&. After this conversion, the pixel is treated as if it had been read as an RGBA pixel\&.
+.RE
+.PP
+\fBGL_RGB\fR
+.RS 4
+.RE
+.PP
+\fBGL_BGR\fR
+.RS 4
+Each pixel is a three\-component group: red first, followed by green, followed by blue; for
+\fBGL_BGR\fR, the first component is blue, followed by green and then red\&. Each component is converted to the internal floating\-point format in the same way the red, green, and blue components of an RGBA pixel are\&. The color triple is converted to an RGBA pixel with alpha set to 1\&. After this conversion, the pixel is treated as if it had been read as an RGBA pixel\&.
+.RE
+.PP
+\fBGL_LUMINANCE\fR
+.RS 4
+Each pixel is a single luminance component\&. This component is converted to the internal floating\-point format in the same way the red component of an RGBA pixel is\&. It is then converted to an RGBA pixel with red, green, and blue set to the converted luminance value, and alpha set to 1\&. After this conversion, the pixel is treated as if it had been read as an RGBA pixel\&.
+.RE
+.PP
+\fBGL_LUMINANCE_ALPHA\fR
+.RS 4
+Each pixel is a two\-component group: luminance first, followed by alpha\&. The two components are converted to the internal floating\-point format in the same way the red component of an RGBA pixel is\&. They are then converted to an RGBA pixel with red, green, and blue set to the converted luminance value, and alpha set to the converted alpha value\&. After this conversion, the pixel is treated as if it had been read as an RGBA pixel\&.
+.RE
+.PP
+The following table summarizes the meaning of the valid constants for the
+\fItype\fR
+parameter:
+.PP
+.TS
+allbox tab(:);
+lB lB.
+T{
+\fB Type \fR
+T}:T{
+\fB Corresponding Type \fR
+T}
+.T&
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l
+l l.
+T{
+\fBGL_UNSIGNED_BYTE\fR
+T}:T{
+unsigned 8\-bit integer
+T}
+T{
+\fBGL_BYTE\fR
+T}:T{
+signed 8\-bit integer
+T}
+T{
+\fBGL_BITMAP\fR
+T}:T{
+single bits in unsigned 8\-bit integers
+T}
+T{
+\fBGL_UNSIGNED_SHORT\fR
+T}:T{
+unsigned 16\-bit integer
+T}
+T{
+\fBGL_SHORT\fR
+T}:T{
+signed 16\-bit integer
+T}
+T{
+\fBGL_UNSIGNED_INT\fR
+T}:T{
+unsigned 32\-bit integer
+T}
+T{
+\fBGL_INT\fR
+T}:T{
+32\-bit integer
+T}
+T{
+\fBGL_FLOAT\fR
+T}:T{
+single\-precision floating\-point
+T}
+T{
+\fBGL_UNSIGNED_BYTE_3_3_2\fR
+T}:T{
+unsigned 8\-bit integer
+T}
+T{
+\fBGL_UNSIGNED_BYTE_2_3_3_REV\fR
+T}:T{
+unsigned 8\-bit integer with reversed component ordering
+T}
+T{
+\fBGL_UNSIGNED_SHORT_5_6_5\fR
+T}:T{
+unsigned 16\-bit integer
+T}
+T{
+\fBGL_UNSIGNED_SHORT_5_6_5_REV\fR
+T}:T{
+unsigned 16\-bit integer with reversed component ordering
+T}
+T{
+\fBGL_UNSIGNED_SHORT_4_4_4_4\fR
+T}:T{
+unsigned 16\-bit integer
+T}
+T{
+\fBGL_UNSIGNED_SHORT_4_4_4_4_REV\fR
+T}:T{
+unsigned 16\-bit integer with reversed component ordering
+T}
+T{
+\fBGL_UNSIGNED_SHORT_5_5_5_1\fR
+T}:T{
+unsigned 16\-bit integer
+T}
+T{
+\fBGL_UNSIGNED_SHORT_1_5_5_5_REV\fR
+T}:T{
+unsigned 16\-bit integer with reversed component ordering
+T}
+T{
+\fBGL_UNSIGNED_INT_8_8_8_8\fR
+T}:T{
+unsigned 32\-bit integer
+T}
+T{
+\fBGL_UNSIGNED_INT_8_8_8_8_REV\fR
+T}:T{
+unsigned 32\-bit integer with reversed component ordering
+T}
+T{
+\fBGL_UNSIGNED_INT_10_10_10_2\fR
+T}:T{
+unsigned 32\-bit integer
+T}
+T{
+\fBGL_UNSIGNED_INT_2_10_10_10_REV\fR
+T}:T{
+unsigned 32\-bit integer with reversed component ordering
+T}
+.TE
+.sp 1
+.PP
+.PP
+The rasterization described so far assumes pixel zoom factors of 1\&. If
+\fBglPixelZoom\fR()
+is used to change the
+x
+and
+y
+pixel zoom factors, pixels are converted to fragments as follows\&. If
+(xr, yr)
+is the current raster position, and a given pixel is in the
+nth column and
+mth row of the pixel rectangle, then fragments are generated for pixels whose centers are in the rectangle with corners at
+.PP
+    (xr + zoomx n, yr + zoomy m)
+.PP 
+    (xr + zoomx (n + 1), yr + zoomy (m + 1)
+.PP
+where
+zoomx
+is the value of
+\fBGL_ZOOM_X\fR
+and
+zoomy
+is the value of
+\fBGL_ZOOM_Y\fR\&.
+.SH "NOTES"
+.PP
+\fBGL_BGR\fR
+and
+\fBGL_BGRA\fR
+are only valid for
+\fIformat\fR
+if the GL version is 1\&.2 or greater\&.
+.PP
+\fBGL_UNSIGNED_BYTE_3_3_2\fR,
+\fBGL_UNSIGNED_BYTE_2_3_3_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5_REV\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_5_5_1\fR,
+\fBGL_UNSIGNED_SHORT_1_5_5_5_REV\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8_REV\fR,
+\fBGL_UNSIGNED_INT_10_10_10_2\fR, and
+\fBGL_UNSIGNED_INT_2_10_10_10_REV\fR
+are only valid for
+\fItype\fR
+if the GL version is 1\&.2 or greater\&.
+.SH "ERRORS"
+.PP
+\fBGL_INVALID_ENUM\fR
+is generated if
+\fIformat\fR
+or
+\fItype\fR
+is not one of the accepted values\&.
+.PP
+\fBGL_INVALID_ENUM\fR
+is generated if
+\fItype\fR
+is
+\fBGL_BITMAP\fR
+and
+\fIformat\fR
+is not either
+\fBGL_COLOR_INDEX\fR
+or
+\fBGL_STENCIL_INDEX\fR\&.
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if either
+\fIwidth\fR
+or
+\fIheight\fR
+is negative\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fIformat\fR
+is
+\fBGL_STENCIL_INDEX\fR
+and there is no stencil buffer\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fIformat\fR
+is
+\fBGL_RED\fR,
+\fBGL_GREEN\fR,
+\fBGL_BLUE\fR,
+\fBGL_ALPHA\fR,
+\fBGL_RGB\fR,
+\fBGL_RGBA\fR,
+\fBGL_BGR\fR,
+\fBGL_BGRA\fR,
+\fBGL_LUMINANCE\fR, or
+\fBGL_LUMINANCE_ALPHA\fR, and the GL is in color index mode\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fIformat\fR
+is one of
+\fBGL_UNSIGNED_BYTE_3_3_2\fR,
+\fBGL_UNSIGNED_BYTE_2_3_3_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_6_5\fR, or
+\fBGL_UNSIGNED_SHORT_5_6_5_REV\fR
+and
+\fIformat\fR
+is not
+\fBGL_RGB\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fIformat\fR
+is one of
+\fBGL_UNSIGNED_SHORT_4_4_4_4\fR,
+\fBGL_UNSIGNED_SHORT_4_4_4_4_REV\fR,
+\fBGL_UNSIGNED_SHORT_5_5_5_1\fR,
+\fBGL_UNSIGNED_SHORT_1_5_5_5_REV\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8\fR,
+\fBGL_UNSIGNED_INT_8_8_8_8_REV\fR,
+\fBGL_UNSIGNED_INT_10_10_10_2\fR, or
+\fBGL_UNSIGNED_INT_2_10_10_10_REV\fR
+and
+\fIformat\fR
+is neither
+\fBGL_RGBA\fR
+nor
+\fBGL_BGRA\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if a non\-zero buffer object name is bound to the
+\fBGL_PIXEL_UNPACK_BUFFER\fR
+target and the buffer object\*(Aqs data store is currently mapped\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if a non\-zero buffer object name is bound to the
+\fBGL_PIXEL_UNPACK_BUFFER\fR
+target and the data would be unpacked from the buffer object such that the memory reads required would exceed the data store size\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if a non\-zero buffer object name is bound to the
+\fBGL_PIXEL_UNPACK_BUFFER\fR
+target and
+\fIdata\fR
+is not evenly divisible into the number of bytes needed to store in memory a datum indicated by
+\fItype\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fBglDrawPixels\fR
+is executed between the execution of
+\fBglBegin\fR()
+and the corresponding execution of
+\fBglEnd\fR()\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_POSITION\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_CURRENT_RASTER_POSITION_VALID\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_PIXEL_UNPACK_BUFFER_BINDING\fR
+.SH "SEE ALSO"
+.PP
+\fBglAlphaFunc\fR(),
+\fBglBlendFunc\fR(),
+\fBglCopyPixels\fR(),
+\fBglDepthFunc\fR(),
+\fBglLogicOp\fR(),
+\fBglPixelMap\fR(),
+\fBglPixelStore\fR(),
+\fBglPixelTransfer\fR(),
+\fBglPixelZoom\fR(),
+\fBglRasterPos\fR(),
+\fBglReadPixels\fR(),
+\fBglScissor\fR(),
+\fBglStencilFunc\fR(),
+\fBglWindowPos\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+1991\-2006 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.

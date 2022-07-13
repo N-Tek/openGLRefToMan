@@ -1,0 +1,109 @@
+'\" t
+.\"     Title: glTranslate
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL ES 1.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLTRANSLATE" "3GLesEarliest" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL ES 1\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glTranslatef, glTranslatex \- multiply the current matrix by a translation matrix
+.SH "C SPECIFICATION"
+.HP \w'void\ glTranslatef('u
+.BI "void glTranslatef(GLfloat\ " "x" ", GLfloat\ " "y" ", GLfloat\ " "z" ");"
+.HP \w'void\ glTranslatex('u
+.BI "void glTranslatex(GLfixed\ " "x" ", GLfixed\ " "y" ", GLfixed\ " "z" ");"
+.SH "PARAMETERS"
+.PP
+\fIx\fR, \fIy\fR, \fIz\fR
+.RS 4
+Specify the
+\fIx\fR,
+\fIy\fR, and
+\fIz\fR
+coordinates of a translation vector\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglTranslate\fR
+produces a translation by
+(x,y,z)\&. The current matrix (see
+\fBglMatrixMode\fR()) is multiplied by this translation matrix, with the product replacing the current matrix, as if
+\fBglMultMatrix\fR()
+were called with the following matrix for its argument:
+
+	    
+.br
+    ( 1     0     0     x )
+.br
+    ( 0     1     0     y )
+.br
+    ( 0     0     1     z )
+.br
+    ( 0     0     0     1 )
+.br
+
+.PP
+If the matrix mode is either
+\fBGL_MODELVIEW\fR
+or
+\fBGL_PROJECTION\fR, all objects drawn after a call to
+\fBglTranslate\fR
+are translated\&.
+.PP
+Use
+\fBglPushMatrix\fR()
+and
+\fBglPopMatrix\fR()
+to save and restore the untranslated coordinate system\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_MATRIX_MODE\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_MODELVIEW_MATRIX\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_PROJECTION_MATRIX\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_TEXTURE_MATRIX\fR
+.SH "SEE ALSO"
+.PP
+\fBglMatrixMode\fR(),
+\fBglMultMatrix\fR(),
+\fBglPushMatrix\fR(),
+\fBglRotate\fR(),
+\fBglScale\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+2003\-2004 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.
