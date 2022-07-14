@@ -1,0 +1,19 @@
+openGLRefToMan is a group of shell scripts and corrected
+manpages used for creating readable manpages that will be 
+produced by conversion of DocBook XML sources of official 
+OpenGL API references presented by Khronos Group. 
+
+Patches will be created by using helper scripts and manually 
+corrected manpages which are presented as a part of the 
+sources required for the SlackBuild script
+
+Could download related sources by using following URLs:
+
+ https://github.com/KhronosGroup/OpenGL-Refpages/archive/refs/
+         heads/main.zip
+
+ https://github.com/N-Tek/openGLRefToMan/blob/master/SlackBuild/
+         sources/openGLRefToMan-1.0.1.tar.gz
+
+dependency: Official OpenGL API References' DocBook XML sources,
+            manually corrected manpages
