@@ -1,0 +1,153 @@
+#!/bin/bash
+
+# openGLReftoMan.SlackBuild - SlackBuild script for creating OpenGL Ref manpages
+# Copyright © 2022 Necib ÇAPAR <necipcapar@gmail.com>
+
+# This file is part of openGLRefToMan
+
+# openGLRefToMan is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# openGLRefToMan is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+cd $(dirname $0) ; CWD=$(pwd)
+
+PRGNAM=openGLRefToMan		# replace with name of program
+VERSION=${VERSION:-1.0.0}	# replace with version of program
+BUILD=${BUILD:-1}
+TAG=${TAG:-_SBo}
+PKGTYPE=${PKGTYPE:-tgz}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i?86) ARCH=i586 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
+
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ "$ARCH" = "i586" ]; then
+  SLKCFLAGS="-O2 -march=i586 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
+  LIBDIRSUFFIX=""
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2 -fPIC"
+  LIBDIRSUFFIX="64"
+else
+  SLKCFLAGS="-O2"
+  LIBDIRSUFFIX=""
+fi
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+
+# If required download source files into source directory
+if [ ! -f $CWD/$PRGNAM-$VERSION.tar.gz ]; then  
+    mkdir $PRGNAM-$VERSION
+    cd $PRGNAM-$VERSION
+
+    # get official OpenGL-Reference sources
+    openGLRef_website=${source_website:-'https://github.com/KhronosGroup/OpenGL-Refpages/archive/refs/heads/main.zip'}
+    LANG=us wget --execute robots=off --no-parent --no-host-directories --no-verbose \
+	         --no-check-certificate $openGLRef_website
+
+    unzip main.zip
+    rm --verbose main.zip
+
+    # get corrected_manpages/ and scripts/ directory from the maintainer's repo
+    slackBuild_scr_website=${scr_website:-'https://github.com/N-Tek/openGLRefToMan/archive/refs/heads/master.zip'}
+    LANG=us wget --execute robots=off --no-parent --no-host-directories --no-verbose \
+	         --no-check-certificate $slackBuild_scr_website
+
+    unzip master.zip *corrected_manpages* *scripts*
+    mv openGLRefToMan-master/SlackBuild/sources/{corrected_manpages,scripts} .
+    rm --verbose --force --recursive master.zip openGLRefToMan-master
+
+    cd ..
+else
+    tar --extract --verbose  --file="$CWD/$PRGNAM-$VERSION.tar.gz"
+fi
+
+cd $PRGNAM-$VERSION
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 \
+  -o -perm 511 \) -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
+  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
+
+mkdir --parents patches
+scripts/OpenGLprocessRepo.sh OpenGL-Refpages*
+scripts/OpenGLcreateManPatches.sh ./OpenGL-Refpages*/man3 ./corrected_manpages/* ./patches
+scripts/OpenGLpatchManPages.sh OpenGL-Refpages*/man3 patches
+
+mkdir --parents $PKG/usr/man
+cp --archive $TMP/$PRGNAM-$VERSION/OpenGL-Refpages*/man3 $PKG/usr/man
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
+
+mkdir -p $PKG/install
+if [ -f $CWD/slack-desc ]; then
+    cat $CWD/slack-desc > $PKG/install/slack-desc
+else 
+echo "# HOW TO EDIT THIS FILE:
+# The \"handy ruler\" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+              |-----handy-ruler------------------------------------------------------|
+openGLRefToMan: openGLRefToMan (manpages for OpenGL API references)
+openGLRefToMan:
+openGLRefToMan: converted OpenGL API references in manpage format
+openGLRefToMan:
+openGLRefToMan:
+openGLRefToMan:
+openGLRefToMan:
+openGLRefToMan:
+openGLRefToMan:
+openGLRefToMan:
+openGLRefToMan: https://github.com/N-Tek/openGLRefToMan.git" >| $PKG/install/slack-desc
+fi
+
+if [ -f $CWD/doinst.sh ]; then
+    cat $CWD/doinst.sh >| $PKG/install/doinst.sh
+else  # update whatis database after taking a backup with .orig suffix
+echo "if [ -f /usr/man/whatis.orig ]; then
+    cp --verbose --archive /usr/man/whatis.orig /usr/man/whatis
+fi
+cp --verbose --archive /usr/man/whatis /usr/man/whatis.orig
+/usr/sbin/makewhatis -u -v -s 3" >| $PKG/install/doinst.sh
+chmod 0644 $PKG/install/doinst.sh
+fi
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE
