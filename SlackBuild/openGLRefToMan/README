@@ -5,15 +5,19 @@ OpenGL API references presented by Khronos Group.
 
 Patches will be created by using helper scripts and manually 
 corrected manpages which are presented as a part of the 
-sources required for the SlackBuild script
+sources required for the SlackBuild script.
 
-Could download related sources by using following URLs:
+The user is presented with an option for creation of up-to-date 
+SlackBuild source tarball in scripts/CreateSlackBuildSourceTarball.sh
+of the source tarball instead of using potentially out-dated 
+SlackBuild source tarball. 
 
- https://github.com/KhronosGroup/OpenGL-Refpages/archive/refs/
-         heads/main.zip
-
- https://github.com/N-Tek/openGLRefToMan/blob/master/SlackBuild/
-         sources/openGLRefToMan-1.0.1.tar.gz
+After the removal of the package replace the updated 'whatis'
+database with it's backup having '.orig' suffix, both located 
+under /usr/man/ directory
 
 dependency: Official OpenGL API References' DocBook XML sources,
-            manually corrected manpages
+            manually corrected manpages,
+            mathML2dtd,            (W3 MathML 2 DTD)
+            docbookMathMl1mods,    (DocBook MathML Modules)
+            docbook-xml5           (DocBook5 DTDs and schemas)
