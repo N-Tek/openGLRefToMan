@@ -1,0 +1,299 @@
+'\" t
+.\"     Title: glCopyColorTable
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL 2.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLCOPYCOLORTABLE" "3GLearliest" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL 2\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glCopyColorTable \- copy pixels into a color table
+.SH "C SPECIFICATION"
+.HP \w'void\ glCopyColorTable('u
+.BI "void glCopyColorTable(GLenum\ " "target" ", GLenum\ " "internalformat" ", GLint\ " "x" ", GLint\ " "y" ", GLsizei\ " "width" ");"
+.SH "PARAMETERS"
+.PP
+\fItarget\fR
+.RS 4
+The color table target\&. Must be
+\fBGL_COLOR_TABLE\fR,
+\fBGL_POST_CONVOLUTION_COLOR_TABLE\fR, or
+\fBGL_POST_COLOR_MATRIX_COLOR_TABLE\fR\&.
+.RE
+.PP
+\fIinternalformat\fR
+.RS 4
+The internal storage format of the texture image\&. Must be one of the following symbolic constants:
+\fBGL_ALPHA\fR,
+\fBGL_ALPHA4\fR,
+\fBGL_ALPHA8\fR,
+\fBGL_ALPHA12\fR,
+\fBGL_ALPHA16\fR,
+\fBGL_LUMINANCE\fR,
+\fBGL_LUMINANCE4\fR,
+\fBGL_LUMINANCE8\fR,
+\fBGL_LUMINANCE12\fR,
+\fBGL_LUMINANCE16\fR,
+\fBGL_LUMINANCE_ALPHA\fR,
+\fBGL_LUMINANCE4_ALPHA4\fR,
+\fBGL_LUMINANCE6_ALPHA2\fR,
+\fBGL_LUMINANCE8_ALPHA8\fR,
+\fBGL_LUMINANCE12_ALPHA4\fR,
+\fBGL_LUMINANCE12_ALPHA12\fR,
+\fBGL_LUMINANCE16_ALPHA16\fR,
+\fBGL_INTENSITY\fR,
+\fBGL_INTENSITY4\fR,
+\fBGL_INTENSITY8\fR,
+\fBGL_INTENSITY12\fR,
+\fBGL_INTENSITY16\fR,
+\fBGL_R3_G3_B2\fR,
+\fBGL_RGB\fR,
+\fBGL_RGB4\fR,
+\fBGL_RGB5\fR,
+\fBGL_RGB8\fR,
+\fBGL_RGB10\fR,
+\fBGL_RGB12\fR,
+\fBGL_RGB16\fR,
+\fBGL_RGBA\fR,
+\fBGL_RGBA2\fR,
+\fBGL_RGBA4\fR,
+\fBGL_RGB5_A1\fR,
+\fBGL_RGBA8\fR,
+\fBGL_RGB10_A2\fR,
+\fBGL_RGBA12\fR, or
+\fBGL_RGBA16\fR\&.
+.RE
+.PP
+\fIx\fR
+.RS 4
+The x coordinate of the lower\-left corner of the pixel rectangle to be transferred to the color table\&.
+.RE
+.PP
+\fIy\fR
+.RS 4
+The y coordinate of the lower\-left corner of the pixel rectangle to be transferred to the color table\&.
+.RE
+.PP
+\fIwidth\fR
+.RS 4
+The width of the pixel rectangle\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglCopyColorTable\fR
+loads a color table with pixels from the current
+\fBGL_READ_BUFFER\fR
+(rather than from main memory, as is the case for
+\fBglColorTable\fR())\&.
+.PP
+The screen\-aligned pixel rectangle with lower\-left corner at (\fIx\fR,\e
+\fIy\fR) having width
+\fIwidth\fR
+and height 1 is loaded into the color table\&. If any pixels within this region are outside the window that is associated with the GL context, the values obtained for those pixels are undefined\&.
+.PP
+The pixels in the rectangle are processed just as if
+\fBglReadPixels\fR()
+were called, with
+\fIinternalformat\fR
+set to RGBA, but processing stops after the final conversion to RGBA\&.
+.PP
+The four scale parameters and the four bias parameters that are defined for the table are then used to scale and bias the R, G, B, and A components of each pixel\&. The scale and bias parameters are set by calling
+\fBglColorTableParameter\fR()\&.
+.PP
+Next, the R, G, B, and A values are clamped to the range
+0 1\&. Each pixel is then converted to the internal format specified by
+\fIinternalformat\fR\&. This conversion simply maps the component values of the pixel (R, G, B, and A) to the values included in the internal format (red, green, blue, alpha, luminance, and intensity)\&. The mapping is as follows:
+.PP
+.TS
+allbox tab(:);
+lB cB cB cB cB cB cB.
+T{
+\fB Internal Format \fR
+T}:T{
+\fB Red \fR
+T}:T{
+\fB Green \fR
+T}:T{
+\fB Blue \fR
+T}:T{
+\fB Alpha \fR
+T}:T{
+\fB Luminance \fR
+T}:T{
+\fB Intensity \fR
+T}
+.T&
+l c c c c c c
+l c c c c c c
+l c c c c c c
+l c c c c c c
+l c c c c c c
+l c c c c c c.
+T{
+\fBGL_ALPHA\fR
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+A
+T}:T{
+
+T}:T{
+
+T}
+T{
+\fBGL_LUMINANCE\fR
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+R
+T}:T{
+
+T}
+T{
+\fBGL_LUMINANCE_ALPHA\fR
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+A
+T}:T{
+R
+T}:T{
+
+T}
+T{
+\fBGL_INTENSITY\fR
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}:T{
+R
+T}
+T{
+\fBGL_RGB\fR
+T}:T{
+R
+T}:T{
+G
+T}:T{
+B
+T}:T{
+
+T}:T{
+
+T}:T{
+
+T}
+T{
+\fBGL_RGBA\fR
+T}:T{
+R
+T}:T{
+G
+T}:T{
+B
+T}:T{
+A
+T}:T{
+
+T}:T{
+
+T}
+.TE
+.sp 1
+.PP
+Finally, the red, green, blue, alpha, luminance, and/or intensity components of the resulting pixels are stored in the color table\&. They form a one\-dimensional table with indices in the range
+[0, width \- 1]\&.
+.PP
+.SH "NOTES"
+.PP
+\fBglCopyColorTable\fR
+is available only if
+ARB_imaging
+is returned from calling
+\fBglGetString\fR()
+with an argument of
+\fBGL_EXTENSIONS\fR\&.
+.SH "ERRORS"
+.PP
+\fBGL_INVALID_ENUM\fR
+is generated when
+\fItarget\fR
+is not one of the allowable values\&.
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if
+\fIwidth\fR
+is less than zero\&.
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if
+\fIinternalformat\fR
+is not one of the allowable values\&.
+.PP
+\fBGL_TABLE_TOO_LARGE\fR
+is generated if the requested color table is too large to be supported by the implementation\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fBglCopyColorTable\fR
+is executed between the execution of
+\fBglBegin\fR()
+and the corresponding execution of
+\fBglEnd\fR()\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGetColorTable\fR(),
+\fBglGetColorTableParameter\fR()
+.SH "SEE ALSO"
+.PP
+\fBglColorTable\fR(),
+\fBglColorTableParameter\fR(),
+\fBglReadPixels\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+1991\-2006 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.

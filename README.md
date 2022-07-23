@@ -93,7 +93,7 @@ Manpages will be build as follows:
     For Slackware64 15.0 you can use following packages:  
     * [mathML2dtd](https://github.com/N-Tek/mathML2dtd)  
     * [docbookMathML1mods](https://github.com/N-Tek/docbookMathML1mods)  
-    * [docbook5.0.0](https://github.com/N-Tek/docbook-5.0.0)  
+    * [docbook-xml5](https://github.com/N-Tek/docbook-xml5)  
 
   3. By using [OpenGLprocessRepo.sh](./SlackBuild/sources/scripts/OpenGLprocessRepo.sh) script
   convert DocBook xml sources to manpages (may take ≥30 minutes).
@@ -138,6 +138,11 @@ create a removable package.
 Manually install the package.
 
 For detailed package creation and installation info check [here][slackbuildsHowTo].
+
+The user is presented with an option for creation of up-to-date
+SlackBuild source tarball in **scripts/CreateSlackBuildSourceTarball.sh**
+of the source tarball instead of using potentially out-dated 
+SlackBuild source tarball.
 
 As a result of installation newly created patched manpages will be automatically
 copied into **/usr/man/** and _whatis_ database will be automatically updated

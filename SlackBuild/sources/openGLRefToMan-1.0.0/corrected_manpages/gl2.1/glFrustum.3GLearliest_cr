@@ -1,0 +1,193 @@
+'\" t
+.\"     Title: glFrustum
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL 2.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLFRUSTUM" "3GLearliest" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL 2\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glFrustum \- multiply the current matrix by a perspective matrix
+.SH "C SPECIFICATION"
+.HP \w'void\ glFrustum('u
+.BI "void glFrustum(GLdouble\ " "left" ", GLdouble\ " "right" ", GLdouble\ " "bottom" ", GLdouble\ " "top" ", GLdouble\ " "nearVal" ", GLdouble\ " "farVal" ");"
+.SH "PARAMETERS"
+.PP
+\fIleft\fR, \fIright\fR
+.RS 4
+Specify the coordinates for the left and right vertical clipping planes\&.
+.RE
+.PP
+\fIbottom\fR, \fItop\fR
+.RS 4
+Specify the coordinates for the bottom and top horizontal clipping planes\&.
+.RE
+.PP
+\fInearVal\fR, \fIfarVal\fR
+.RS 4
+Specify the distances to the near and far depth clipping planes\&. Both distances must be positive\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglFrustum\fR
+describes a perspective matrix that produces a perspective projection\&. The current matrix (see
+\fBglMatrixMode\fR()) is multiplied by this matrix and the result replaces the current matrix, as if
+\fBglMultMatrix\fR()
+were called with the following matrix as its argument:
+.PP
+       [                                        ]
+       [    2near/                              ]
+       [ -------------         0           A  0 ]
+       [ right \- left                           ]
+       [                                        ]
+       [                     2near              ]
+       [      0          -------------     B  0 ]
+       [                 top \- bottom           ]
+       [                                        ]
+       [      0                0           C  D ]
+       [                                        ]
+       [      0                0          \-1  0 ]
+       [                                        ]
+
+
+       right + left  
+.br
+A =   --------------
+       right \- left
+
+       top + bottom 
+.br
+B =   --------------
+       top \- bottom
+
+       far + near
+.br
+C = \- ------------
+       far \- near
+
+        2far near
+.br
+D = \- ------------
+       far \- near
+
+.PP
+Typically, the matrix mode is
+\fBGL_PROJECTION\fR, and
+left bottom \- nearVal
+and
+right top \- nearVal
+specify the points on the near clipping plane that are mapped to the lower left and upper right corners of the window, assuming that the eye is located at (0, 0, 0)\&.
+\- farVal
+specifies the location of the far clipping plane\&. Both
+\fInearVal\fR
+and
+\fIfarVal\fR
+must be positive\&.
+.PP
+Use
+\fBglPushMatrix\fR()
+and
+\fBglPopMatrix\fR()
+to save and restore the current matrix stack\&.
+.SH "NOTES"
+.PP
+Depth buffer precision is affected by the values specified for
+\fInearVal\fR
+and
+\fIfarVal\fR\&. The greater the ratio of
+\fIfarVal\fR
+to
+\fInearVal\fR
+is, the less effective the depth buffer will be at distinguishing between surfaces that are near each other\&. If
+.PP
+    r = farVal / nearVal
+.PP
+roughly
+log 2(r)
+bits of depth buffer precision are lost\&. Because
+r
+approaches infinity as
+\fInearVal\fR
+approaches 0,
+\fInearVal\fR
+must never be set to 0\&.
+.SH "ERRORS"
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if
+\fInearVal\fR
+or
+\fIfarVal\fR
+is not positive, or if
+\fIleft\fR
+=
+\fIright\fR, or
+\fIbottom\fR
+=
+\fItop\fR, or
+\fInear\fR
+=
+\fIfar\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fBglFrustum\fR
+is executed between the execution of
+\fBglBegin\fR()
+and the corresponding execution of
+\fBglEnd\fR()\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_MATRIX_MODE\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_MODELVIEW_MATRIX\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_PROJECTION_MATRIX\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_TEXTURE_MATRIX\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_COLOR_MATRIX\fR
+.SH "SEE ALSO"
+.PP
+\fBglOrtho\fR(),
+\fBglMatrixMode\fR(),
+\fBglMultMatrix\fR(),
+\fBglPushMatrix\fR(),
+\fBglViewport\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+1991\-2006 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.

@@ -1,0 +1,160 @@
+'\" t
+.\"     Title: glEvalPoint
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL 2.1 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLEVALPOINT" "3GLearliest" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL 2\&.1 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glEvalPoint \- generate and evaluate a single point in a mesh
+.SH "C SPECIFICATION"
+.HP \w'void\ glEvalPoint1('u
+.BI "void glEvalPoint1(GLint\ " "i" ");"
+.HP \w'void\ glEvalPoint2('u
+.BI "void glEvalPoint2(GLint\ " "i" ", GLint\ " "j" ");"
+.SH "PARAMETERS"
+.PP
+\fIi\fR
+.RS 4
+Specifies the integer value for grid domain variable
+i\&.
+.RE
+.PP
+\fIj\fR
+.RS 4
+Specifies the integer value for grid domain variable
+j
+(\fBglEvalPoint2\fR
+only)\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglMapGrid\fR()
+and
+\fBglEvalMesh\fR()
+are used in tandem to efficiently generate and evaluate a series of evenly spaced map domain values\&.
+\fBglEvalPoint\fR
+can be used to evaluate a single grid point in the same gridspace that is traversed by
+\fBglEvalMesh\fR()\&. Calling
+\fBglEvalPoint1\fR
+is equivalent to calling
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+    glEvalCoord1(i \(md delta(u) + u1);
+         
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+where
+
+.br
+    delta(u) = (u2 \- u1) / n
+.PP
+and
+n,
+u1, and
+u2
+are the arguments to the most recent
+\fBglMapGrid1\fR()
+command\&. The one absolute numeric requirement is that if
+i = n, then the value computed from
+i \(md delta(u) + u1
+is exactly
+u2\&.
+.PP
+In the two\-dimensional case,
+\fBglEvalPoint2\fR, let
+.PP
+    delta(u) = (u2 \- u1) / n
+    delta(v) = (v2 \- v1) / m
+.PP
+where
+n,
+u1,
+u2,
+m,
+v1, and
+v2
+are the arguments to the most recent
+\fBglMapGrid2\fR()
+command\&. Then the
+\fBglEvalPoint2\fR
+command is equivalent to calling
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+    glEvalCoord2(i \(md delta(u) + u1, j \(md delta(v) + v1);
+            
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+The only absolute numeric requirements are that if
+i = n, then the value computed from
+i \(md delta(u) + u1
+is exactly
+u2, and if
+j = m, then the value computed from
+j \(md delta(v) + v1
+is exactly
+v2\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_MAP1_GRID_DOMAIN\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_MAP2_GRID_DOMAIN\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_MAP1_GRID_SEGMENTS\fR
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_MAP2_GRID_SEGMENTS\fR
+.SH "SEE ALSO"
+.PP
+\fBglEvalCoord\fR(),
+\fBglEvalMesh\fR(),
+\fBglMap1\fR(),
+\fBglMap2\fR(),
+\fBglMapGrid\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+1991\-2006 Silicon Graphics, Inc\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.

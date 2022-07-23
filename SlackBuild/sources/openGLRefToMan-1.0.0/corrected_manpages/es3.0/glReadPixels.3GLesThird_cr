@@ -1,0 +1,421 @@
+'\" t
+.\"     Title: glReadPixels
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 12/21/2021
+.\"    Manual: { OpenGL ES 3.0 }
+.\"    Source: pkged by Necib CAPAR(PhD.)
+.\"  Language: English
+.\"
+.TH "GLREADPIXELS" "3GLesThird" "12/21/2021" "pkged by Necib CAPAR(PhD\&.)" "{ OpenGL ES 3\&.0 }"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+glReadPixels \- read a block of pixels from the frame buffer
+.SH "C SPECIFICATION"
+.HP \w'void\ glReadPixels('u
+.BI "void glReadPixels(GLint\ " "x" ", GLint\ " "y" ", GLsizei\ " "width" ", GLsizei\ " "height" ", GLenum\ " "format" ", GLenum\ " "type" ", void\ *\ " "data" ");"
+.SH "PARAMETERS"
+.PP
+\fIx\fR, \fIy\fR
+.RS 4
+Specify the window coordinates of the first pixel that is read from the frame buffer\&. This location is the lower left corner of a rectangular block of pixels\&.
+.RE
+.PP
+\fIwidth\fR, \fIheight\fR
+.RS 4
+Specify the dimensions of the pixel rectangle\&.
+\fIwidth\fR
+and
+\fIheight\fR
+of one correspond to a single pixel\&.
+.RE
+.PP
+\fIformat\fR
+.RS 4
+Specifies the format of the pixel data\&. The following symbolic values are accepted:
+\fBGL_RGBA\fR, and
+\fBGL_RGBA_INTEGER\fR\&. An implementation\-chosen format will also be accepted\&. This can be queried with
+\fBglGet\fR()
+and
+\fBGL_IMPLEMENTATION_COLOR_READ_FORMAT\fR\&.
+.RE
+.PP
+\fItype\fR
+.RS 4
+Specifies the data type of the pixel data\&. Must be one of
+\fBGL_UNSIGNED_BYTE\fR,
+\fBGL_UNSIGNED_INT\fR,
+\fBGL_INT\fR, or
+\fBGL_FLOAT\fR\&. An implementation\-chosen type will also be accepted\&. This can be queried with
+\fBglGet\fR()
+and
+\fBGL_IMPLEMENTATION_COLOR_READ_TYPE\fR\&.
+.RE
+.PP
+\fIdata\fR
+.RS 4
+Returns the pixel data\&.
+.RE
+.SH "DESCRIPTION"
+.PP
+\fBglReadPixels\fR
+returns pixel data from the frame buffer, starting with the pixel whose lower left corner is at location (\fIx\fR,
+\fIy\fR), into client memory starting at location
+\fIdata\fR\&. Several parameters control the processing of the pixel data before it is placed into client memory\&. These parameters are set with
+\fBglPixelStorei\fR()\&. This reference page describes the effects on
+\fBglReadPixels\fR
+of most, but not all of the parameters specified by these three commands\&.
+.PP
+If a non\-zero named buffer object is bound to the
+\fBGL_PIXEL_PACK_BUFFER\fR
+target (see
+\fBglBindBuffer\fR()) while a block of pixels is requested,
+\fIdata\fR
+is treated as a byte offset into the buffer object\*(Aqs data store rather than a pointer to client memory\&.
+.PP
+\fBglReadPixels\fR
+returns values from each pixel with lower left corner at
+(x + i, y + j)
+for
+0 <= i < width
+and
+0 <= j < height\&. This pixel is said to be the
+ith pixel in the
+jth row\&. Pixels are returned in row order from the lowest to the highest row, left to right in each row\&.
+.PP
+\fIformat\fR
+specifies the format for the returned pixel values; accepted values are
+\fBGL_RED\fR,
+\fBGL_RED_INTEGER\fR,
+\fBGL_RG\fR,
+\fBGL_RG_INTEGER\fR,
+\fBGL_RGB\fR,
+\fBGL_RGB_INTEGER\fR,
+\fBGL_RGBA\fR,
+\fBGL_RGBA_INTEGER\fR,
+\fBGL_LUMINANCE_ALPHA\fR,
+\fBGL_LUMINANCE\fR, and
+\fBGL_ALPHA\fR
+.PP
+Finally, the indices or components are converted to the proper format, as specified by
+\fItype\fR\&. If
+\fItype\fR
+is
+\fBGL_FLOAT\fR, then each integer index is converted to single\-precision floating\-point format\&.
+.PP
+If
+\fIformat\fR
+is
+\fBGL_RED\fR,
+\fBGL_RG\fR,
+\fBGL_RGB\fR, or
+\fBGL_RGBA\fR, and
+\fItype\fR
+is not
+\fBGL_FLOAT\fR, each component is multiplied by the multiplier shown in the following table\&. If type is
+\fBGL_FLOAT\fR, then each component is passed as is (or converted to the client\*(Aqs single\-precision floating\-point format if it is different from the one used by the GL)\&.
+.PP
+.TS
+allbox tab(:);
+lB cB cB.
+T{
+\fItype\fR
+T}:T{
+\fB Index Mask \fR
+T}:T{
+\fB Component Conversion \fR
+T}
+.T&
+l c c
+l c c
+l c c
+l c c
+l c c
+l c c
+l c c
+l c c
+l c c
+l c c.
+T{
+\fBGL_UNSIGNED_BYTE\fR
+T}:T{
+2^8 \- 1
+T}:T{
+(2^8 \- 1) c
+T}
+T{
+\fBGL_BYTE\fR
+T}:T{
+2^7 \- 1
+T}:T{
+((2^8 \ -1) c \- 1) / 2
+T}
+T{
+\fBGL_HALF_FLOAT\fR
+T}:T{
+none
+T}:T{
+c
+T}
+T{
+\fBGL_FLOAT\fR
+T}:T{
+none
+T}:T{
+c
+T}
+T{
+\fBGL_UNSIGNED_SHORT_5_6_5\fR
+T}:T{
+2^N \- 1
+T}:T{
+(2^N \- 1) c
+T}
+T{
+\fBGL_UNSIGNED_SHORT_4_4_4_4\fR
+T}:T{
+2^N \- 1
+T}:T{
+(2^N \- 1) c
+T}
+T{
+\fBGL_UNSIGNED_SHORT_5_5_5_1\fR
+T}:T{
+2^N \- 1
+T}:T{
+(2^N \- 1) c
+T}
+T{
+\fBGL_UNSIGNED_INT_2_10_10_10_REV\fR
+T}:T{
+2^N \- 1
+T}:T{
+(2^N \- 1) c
+T}
+T{
+\fBGL_UNSIGNED_INT_10F_11F_11F_REV\fR
+T}:T{
+\-\-
+T}:T{
+Special
+T}
+T{
+\fBGL_UNSIGNED_INT_5_9_9_9_REV\fR
+T}:T{
+\-\-
+T}:T{
+Special
+T}
+.TE
+.sp 1
+.PP
+Return values are placed in memory as follows\&. If
+\fIformat\fR
+is
+\fBGL_RED\fR, or
+\fBGL_RED_INTEGER\fR, a single value is returned and the data for the
+ith pixel in the
+jth row is placed in location
+(j)width + i\&.
+\fBGL_RG\fR
+and
+\fBGL_RG_INTEGER\fR
+return two values,
+\fBGL_RGB\fR
+and
+\fBGL_RGB_INTEGER\fR
+return three values,
+\fBGL_RGBA\fR
+and
+\fBGL_RGBA_INTEGER\fR
+return four values for each pixel, with all values corresponding to a single pixel occupying contiguous space in
+\fIdata\fR\&. See
+\fBglPixelStorei\fR()
+for a description of parameters which affect the packing of data into memory\&.
+.SH "NOTES"
+.PP
+Values for pixels that lie outside the window connected to the current GL context are undefined\&.
+.PP
+If an error is generated, no change is made to the contents of
+\fIdata\fR\&.
+.PP
+Only two
+\fIformat\fR/\fItype\fR
+parameter pairs are accepted\&. For normalized fixed point rendering surfaces,
+\fBGL_RGBA\fR/\fBGL_UNSIGNED_BYTE\fR
+is accepted\&. For signed integer rendering surfaces,
+\fBGL_RGBA_INTEGER\fR/\fBGL_INT\fR
+is accepted\&. For unsigned integer rendering surfaces,
+\fBGL_RGBA_INTEGER\fR/\fBGL_UNSIGNED_INT\fR
+is accepted\&. The other acceptable pair can be discovered by querying
+\fBGL_IMPLEMENTATION_COLOR_READ_FORMAT\fR
+and
+\fBGL_IMPLEMENTATION_COLOR_READ_TYPE\fR\&. The implementation chosen format may also vary depending on the format of the currently bound rendering surface\&.
+.SH "ERRORS"
+.PP
+\fBGL_INVALID_ENUM\fR
+is generated if
+\fIformat\fR
+or
+\fItype\fR
+is not an accepted value\&.
+.PP
+\fBGL_INVALID_VALUE\fR
+is generated if either
+\fIwidth\fR
+or
+\fIheight\fR
+is negative\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if a non\-zero buffer object name is bound to the
+\fBGL_PIXEL_PACK_BUFFER\fR
+target and the buffer object\*(Aqs data store is currently mapped\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if a non\-zero buffer object name is bound to the
+\fBGL_PIXEL_PACK_BUFFER\fR
+target and the data would be packed to the buffer object such that the memory writes required would exceed the data store size\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fBGL_READ_BUFFER\fR
+is
+\fBGL_NONE\fR
+or if
+\fBGL_READ_FRAMEBUFFER_BINDING\fR
+is non\-zero and the read buffer selects an attachment that has no image attached\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if
+\fBGL_READ_FRAMEBUFFER_BINDING\fR
+is non\-zero, the read framebuffer is complete, and the value of
+\fBGL_SAMPLE_BUFFERS\fR
+for the read framebuffer is greater than zero\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if the readbuffer of the currently bound framebuffer is a fixed point normalized surface and
+\fIformat\fR
+and
+\fItype\fR
+are neither
+\fBGL_RGBA\fR
+and
+\fBGL_UNSIGNED_BYTE\fR, respectively, nor the format/type pair returned by querying
+\fBGL_IMPLEMENTATION_COLOR_READ_FORMAT\fR
+and
+\fBGL_IMPLEMENTATION_COLOR_READ_TYPE\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if the readbuffer of the currently bound framebuffer is a floating point surface and
+\fIformat\fR
+and
+\fItype\fR
+are neither
+\fBGL_RGBA\fR
+and
+\fBGL_FLOAT\fR, respectively, nor the format/type pair returned by querying
+\fBGL_IMPLEMENTATION_COLOR_READ_FORMAT\fR
+and
+\fBGL_IMPLEMENTATION_COLOR_READ_TYPE\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if the readbuffer of the currently bound framebuffer is a signed integer surface and
+\fIformat\fR
+and
+\fItype\fR
+are neither
+\fBGL_RGBA_INTEGER\fR
+and
+\fBGL_INT\fR, respectively, nor the format/type pair returned by querying
+\fBGL_IMPLEMENTATION_COLOR_READ_FORMAT\fR
+and
+\fBGL_IMPLEMENTATION_COLOR_READ_TYPE\fR\&.
+.PP
+\fBGL_INVALID_OPERATION\fR
+is generated if the readbuffer of the currently bound framebuffer is an unsigned integer surface and
+\fIformat\fR
+and
+\fItype\fR
+are neither
+\fBGL_RGBA_INTEGER\fR
+and
+\fBGL_UNSIGNED_INT\fR, respectively, nor the format/type pair returned by querying
+\fBGL_IMPLEMENTATION_COLOR_READ_FORMAT\fR
+and
+\fBGL_IMPLEMENTATION_COLOR_READ_TYPE\fR\&.
+.PP
+\fBGL_INVALID_FRAMEBUFFER_OPERATION\fR
+is generated if the currently bound framebuffer is not framebuffer complete (i\&.e\&. the return value from
+\fBglCheckFramebufferStatus\fR()
+is not
+\fBGL_FRAMEBUFFER_COMPLETE\fR)\&.
+.SH "ASSOCIATED GETS"
+.PP
+\fBglGet\fR()
+with argument
+\fBGL_PIXEL_PACK_BUFFER_BINDING\fR
+.SH "API VERSION SUPPORT"
+.TS
+allbox tab(:);
+lB cB s
+lB cB cB.
+T{
+
+T}:T{
+\fBOpenGL ES API Version\fR
+T}
+T{
+\fBFunction Name\fR
+T}:T{
+\fB2\&.0\fR
+T}:T{
+\fB3\&.0\fR
+T}
+.T&
+l c c.
+T{
+glReadPixels
+T}:T{
+✔
+T}:T{
+✔
+T}
+.TE
+.sp 1
+.SH "SEE ALSO"
+.PP
+\fBglPixelStorei\fR(),
+\fBglReadBuffer\fR()
+.SH "COPYRIGHT"
+.PP
+Copyright
+\(co
+1991\-2006 Silicon Graphics, Inc\&. Copyright
+\(co
+2010\-2014 Khronos Group\&. This document is licensed under the SGI Free Software B License\&. For details, see
+\m[blue]\fBhttps://khronos\&.org/registry/OpenGL\-Refpages/LICENSES/LicenseRef\-FreeB\&.txt\fR\m[]\&.
+.SH "COPYRIGHT"
+.br
+Copyright \(co 1991-2006 Silicon Graphics, Inc.
+.br
+Copyright \(co 2010-2014 Khronos Group
+.br
