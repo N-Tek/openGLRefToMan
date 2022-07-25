@@ -1,4 +1,4 @@
-# openGLRefToMan
+[#](#) openGLRefToMan
 
 Scripts and patches for creating a Slackware 15.0 installation package from
 manpages created by conversion of [official OpenGL Reference repository][openglrepo].
@@ -146,7 +146,6 @@ SlackBuild source tarball.
 
 As a result of installation newly created patched manpages will be automatically
 copied into **/usr/man/** and _whatis_ database will be automatically updated
-(original _whatis_ database will be backed with '.diff' suffix).
 
 ### Installation For Other Distros
 
@@ -156,8 +155,7 @@ with required arguments.
 Copy **_man3/_** directory to your distro's main manpage directory OR
 create an installation package for your distro and install it.
 
-Create a backup of your distro's '_whatis_' database(preferably with '.orig' suffix
-and update it.
+Create a backup of your distro's '_whatis_' database and update it.
 
 ## Removal
 
@@ -165,7 +163,8 @@ and update it.
 
 Remove package by using **_removepkg_** command as root. For further info check [here][slackwarePkgRmv].
 
-Replace updated _whatis_ database with it's backup having '.orig' suffix.
+Update index database used by _whatis_ with `mandb -c` command for clearing deleted
+OpenGL API reference manpage entries.
 
 ### For Other Distros
 

@@ -12,9 +12,12 @@ SlackBuild source tarball in scripts/CreateSlackBuildSourceTarball.sh
 of the source tarball instead of using potentially out-dated 
 SlackBuild source tarball. 
 
-After the removal of the package replace the updated 'whatis'
-database with it's backup having '.orig' suffix, both located 
-under /usr/man/ directory
+After the removal of the package DON'T forget to update index
+database used by 'whatis' command with 
+
+   $ mandb -c
+
+for clearance of OpenGL API reference entries.
 
 dependency: Official OpenGL API References' DocBook XML sources,
             manually corrected manpages,

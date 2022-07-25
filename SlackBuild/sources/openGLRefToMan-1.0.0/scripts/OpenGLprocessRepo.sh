@@ -37,7 +37,7 @@ fi
 
 # XSLT processor related variables
 xsltOptions="--nonet --xinclude"
-xsltXLS="/usr/share/xml/docbook/stylesheet/docbook-xsl/manpages/docbook.xsl"
+xsltXLS="/usr/share/xml/docbook/stylesheet/docbook-xsl-ns/manpages/docbook.xsl"
 
 # manpage related variables
 # Following script arrays must be updated manually according to the state of the repo
