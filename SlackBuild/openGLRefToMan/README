@@ -1,4 +1,4 @@
-openGLRefToMan is a group of shell scripts and corrected
+'openGLRefToMan' is a group of shell scripts and corrected
 manpages used for creating readable manpages that will be 
 produced by conversion of DocBook XML sources of official 
 OpenGL API references presented by Khronos Group. 
@@ -18,9 +18,3 @@ database used by 'whatis' command with
    $ mandb -c
 
 for clearance of OpenGL API reference entries.
-
-dependency: Official OpenGL API References' DocBook XML sources,
-            manually corrected manpages,
-            mathML2dtd,            (W3 MathML 2 DTD)
-            docbookMathMl1mods,    (DocBook MathML Modules)
-            docbook-xml5           (DocBook5 DTDs and schemas)
