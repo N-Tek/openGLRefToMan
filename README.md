@@ -163,8 +163,8 @@ Create a backup of your distro's '_whatis_' database and update it.
 
 Remove package by using **_removepkg_** command as root. For further info check [here][slackwarePkgRmv].
 
-Update index database used by _whatis_ with `mandb -c` command for clearing deleted
-OpenGL API reference manpage entries.
+Index database update used by _whatis_  command for clearing deleted
+OpenGL API reference manpage entries will start automatically after package removal
 
 ### For Other Distros
 
